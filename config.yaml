@@ -1,6 +1,6 @@
 baseurl: https://s3alfisc.github.io/blog/
 publishDir: docs
-title: Wild Econometrics & R
+title: Wild Econometrics in R and Python
 author: Alexander Fischer
 canonifyurls: yes
 languagecode: en
@@ -23,7 +23,7 @@ params:
     - python
     - stan
   progressively: no
-  sitename: Wild Econometrics & R
+  sitename: Wild Econometrics in R and Python
   uselatex: yes
 markup:
   goldmark:
