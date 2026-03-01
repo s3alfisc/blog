@@ -6,14 +6,13 @@ type: section
 
 Hi all, I'm Alex!
 
-I am a data scientist at [trivago](http://trivago.com/), where I work on online auctions. In my free time, I work on open source software that implements various inference procedures for linear regression (mostly in **R**, but recently also in **Python**).
+I am a data scientist at [trivago](http://trivago.com/), where I work on online auctions.
+In my free time, I work on open source software for econometrics and statistical inference in **Python** and **R**.
 
+
+-   [`pyfixest`](https://github.com/py-econometrics/pyfixest) is a **Python** package for fast high-dimensional fixed effects regression, mirroring the syntax and functionality of the R `fixest` package. It supports OLS, WLS, IV, Poisson, and GLM regressions, along with difference-in-differences estimators, quantile regression, and various robust variance-covariance estimators.
+-   [`maketables`](https://github.com/py-econometrics/maketables) is a **Python** package for generating publication-ready tables from statistical models and descriptive statistics, with export support for HTML, LaTeX, and Word.
 -   [`fwildclusterboot`](https://github.com/s3alfisc/fwildclusterboot) and [`wildboottest`](https://github.com/s3alfisc/wildboottest) implement the fast **wild cluster bootstrap** algorithm as suggested in [Roodman, MacKinnon, Nielsen & Webb](https://journals.sagepub.com/doi/abs/10.1177/1536867X19830877) and [MacKinnon, Nielsen & Webb (2022)](https://www.econ.queensu.ca/sites/econ.queensu.ca/files/wpaper/qed_wp_1485.pdf) in **R** and **Python**.
--   [`summclust`](https://github.com/s3alfisc/summclust) implements the **Jackknive CRV3 estimator** for clustered covariances as suggested by [MacKinnon, Nielsen & Webb (2022)](https://arxiv.org/abs/2205.03288) in **R**. `summclust` further computes a range of leverage measures for cluster robust inferences (as in the [`summclust`](https://github.com/mattdwebb/summclust) Stata package).
--   [`wildrwolf`](https://github.com/s3alfisc/wildrwolf) and [`wildwyoung`](https://github.com/s3alfisc/wildwyoung) implement the multiple-hypothesis corrections by Romano & Wolf (2005) and Westfall and Young (1993) - as implemented in the [`rwolf`](https://docs.iza.org/dp12845.pdf) and [`wyoung`](https://github.com/reifjulian/wyoung) Stata packages - for regression objects from the `fixest` package (**R**). Because both `wildrwolf` and `wildwyoung` are build around `fwildclusterboot` and the wild (cluster) bootstrap, both packages are usually quite fast.
+
 
 You can find me on [GitHub](https://github.com/s3alfisc) and [r-universe](https://s3alfisc.r-universe.dev/ui#builds).
-
-## Other R-blogs 
-
-You can find other R blogs on [r-bloggers.com](https://r-bloggers.com).
