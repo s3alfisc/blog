@@ -1,0 +1,8 @@
+# options apply to all posts in this folder
+
+# freeze computational output
+freeze: true
+
+# do not execute code (packages/dependencies not guaranteed available)
+execute:
+  eval: false

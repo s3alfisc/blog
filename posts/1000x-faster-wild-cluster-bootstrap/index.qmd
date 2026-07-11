@@ -1,0 +1,172 @@
+---
+title: "1000x faster Wild Cluster Bootstrap Inference in R with fwildclusterboot 🚀"
+author: "Alex Fischer"
+date: "2021-12-12"
+categories: [R, econometrics, "wild cluster bootstrap", "statistical inference"]
+---
+
+When you suspect that the error terms in your regression model are correlated within clusters, and the number of clusters is small, trouble might be running at you. In such a situation, common cluster robust standard errors tend to be downward biased - they are too eager to reject the null hypothesis. Since [Cameron, Gelbach & Miller](https://www.jstor.org/stable/40043157) first suggested that the wild cluster bootstrap might be preferable to sandwich standard errors when the number of clusters is small, it has become common practice among empirical economists to check their cluster robust inferences against the wild cluster bootstrap.
+
+![Not a wild bootstrap, but a wild lion, by Albrecht Duerer](duerer_lion.jpg){fig-align="center" width="75%"}
+
+At some point, I found myself in a "small number of clusters" situation. I was trying to estimate a treatment effect for a sample of a few thousand observations, which were grouped into around 20 clusters. So I started to search for R packages that implement the wild cluster bootstrap, and found two implementations on CRAN: `sandwich` and `clusterSEs`. I opted for the `sandwich` package (because it's actually a really great package) and fit my regression model via `lm()`. Then I started to bootstrap with sandwich's `vcovBS()` function.
+
+So the bootstrap ran ... and I waited. Eventually, I left my office to get some coffee with a colleague, returned to my desk ... and the bootstrap still ran, and I waited even longer.
+
+But while the bootstrap was running, I scrolled the web and stumbled over the ["Fast & Wild" paper](https://journals.sagepub.com/doi/abs/10.1177/1536867X19830877?journalCode=stja) by Roodman et al (2019). The claimed performance in the paper seemed to good to be true: bootstrap inference with several thousands of iterations, in a fraction of a second? The paper presents a Stata implementation of the fast algorithm, [boottest](https://github.com/droodman/bottest), and that was a good enough reason for me to start up a Stata session to try it out.
+
+And indeed, `boottest` *is* mind-blowingly fast: the bootstrap finished almost instantaneously. I was hooked: how was it possible that `boottest` was *so damn fast*?
+
+Luckily, the "Fast & Wild" paper explains the algorithm powering `boottest` in great detail. Out of curiosity, I started to implement it in R, and the `fwildclusterboot` package is the result of this effort. Now, was it worth all the work? How much faster is the "fast algorithm" implemented in `fwildclusterboot`?
+
+To compare `fwildclusterboot's` performance to `sandwich`, I simulate a data set with $N = 10.000$ observations and $N_G = 42$ distinct clusters (42 is the magic number of clusters for which the economics profession has decided that large N asymptotics fail, see Angrist & Pischke's "Mostly Harmless", Chapter 8.2.3) and fit a regression model via `lm()`.
+
+```{r, message = FALSE, warning = FALSE}
+library(fwildclusterboot)
+library(sandwich)
+library(lmtest)
+library(bench)
+
+# simulate data
+seed <- 236723478
+N <- 10000
+data <- fwildclusterboot:::create_data(N = N,
+                                         N_G1 = 42, icc1 = 0.1,
+                                         N_G2 = 20, icc2 = 0.8,
+                                         numb_fe1 = 10,
+                                         numb_fe2 = 10,
+                                         seed = seed,
+                                         weights = 1:N)
+lm_fit <- lm(proposition_vote ~ treatment + as.factor(Q1_immigration) + as.factor(Q2_defense), data)
+```
+
+In the first experiment, the bootstrap will run for $B = 9999$ iterations. For the estimation via `vcovBS`, we will use 4 cores.
+
+```{r, message = FALSE, warning = FALSE}
+B <- 9999
+# wild cluster bootstrap via sandwich::vcovBS
+
+bench1 <-
+bench::mark(
+  boot_slow = sandwich::vcovBS(lm_fit,
+                                R = B,
+                                cluster = ~ group_id1,
+                                cores = 4),
+  iterations = 1
+)
+bench1
+```
+
+`vcovBS()` finishes in around 37 seconds - that's not too bad, isn't it?
+
+```{r, warning = FALSE}
+# wild cluster bootstrap via fwildclusterboot::boottest()
+bench1f <-
+bench::mark(boot_fast =
+                   fwildclusterboot::boottest(lm_fit,
+                                              clustid = c("group_id1"),
+                                              B = B,
+                                              param = "treatment",
+                                              seed = 3,
+                                              nthreads = 1),
+            iterations = 25)
+bench1f
+```
+
+```{r, include = FALSE}
+boot_fast =
+                   fwildclusterboot::boottest(lm_fit,
+                                              clustid = c("group_id1"),
+                                              B = B,
+                                              param = "treatment",
+                                              seed = 3,
+                                              nthreads = 1)
+ boot_slow = sandwich::vcovBS(lm_fit,
+                                R = B,
+                                cluster = ~ group_id1,
+                                cores = 4)
+```
+
+While `sandwich::vcovBS()` takes almost 36.9 seconds, `fwildclusterboot::boottest()` runs in around one fifth of a second 🚀. Yes, really: one fifth of a second! That's a speed gain of a factor of 451! If you don't have 4 cores available, performance differences get even more extreme (e.g. if you only have one core, you have to multiply ~36.9 with a number slightly smaller than 4).
+
+How do `vcovBS()'s` and `boottest()'s` results compare?
+
+```{r, message = FALSE, warning = FALSE}
+summary(boot_fast)
+lmtest::coeftest(x = lm_fit, vcov = boot_slow)[2,]
+lmtest::coefci(x = lm_fit, vcov = boot_slow)[2,]
+```
+
+Between the two implementations, the bootstrapped t-statistics, p-values and confidence intervals are almost identical. They are not exactly identical for two reasons: first due to sampling uncertainty in the bootstrap, and second because `vcovBS` does not apply any small sample adjustments (at least I could not find anything related to small-sample adjustments in both documentation and source code).
+
+The speed gains of `fwildclusterboot` scale well in the number of bootstrap iterations. For $B = 99.999$ iterations, it finishes in around one second. For `vcovBS`, you can expect a linear increase in run-time in the number of bootstrap iterations: a ten-fold increase in bootstrap iterations will increase run-time to around 360 seconds.
+
+```{r, warning = FALSE}
+B <- 99999
+
+bench2f <-
+bench::mark(
+  boot_fast =
+    fwildclusterboot::boottest(lm_fit,
+                             clustid = c("group_id1"),
+                             B = B,
+                             param = "treatment",
+                             seed = 3,
+                             nthreads = 1),
+  iterations = 10
+)
+
+bench2f
+```
+
+What happens if we increase the sample size to $N = 100.000$?
+
+```{r, warning = FALSE}
+N <- 100000
+data <- fwildclusterboot:::create_data(N = N,
+                                         N_G1 = 50, icc1 = 0.1,
+                                         N_G2 = 20, icc2 = 0.8,
+                                         numb_fe1 = 10,
+                                         numb_fe2 = 10,
+                                         seed = seed,
+                                         weights = 1:N)
+lm_fit <- lm(proposition_vote ~ treatment + as.factor(Q1_immigration) + as.factor(Q2_defense), data)
+B <- 9999
+# wild cluster bootstrap via sandwich::vcovBS
+bench3 <- bench::mark(
+  boot_slow = sandwich::vcovBS(lm_fit,
+                                R = B,
+                                cluster = ~ group_id1,
+                                cores = 4),
+  iterations = 1)
+bench3
+```
+
+More than 8 minutes pass before `vcovBS()` finishes. How does `boottest()` do in comparison?
+
+```{r, warning = FALSE}
+# wild cluster bootstrap via fwildclusterboot::boottest()
+
+bench3f <-
+bench::mark(
+  boot_fast =
+    fwildclusterboot::boottest(lm_fit,
+                             clustid = c("group_id1"),
+                             B = B,
+                             param = "treatment",
+                             seed = 3,
+                             nthreads = 1),
+iterations = 5)
+bench3f
+```
+
+With $B = 9999$ iterations, `boottest()` runs for around 0.33 seconds, while `vcovBS()` only finishes after 499 seconds. `fwildclusterboot::boottest()` is 1499 times faster than `sandwich::vcovBS`!
+
+As a conclusion: if you face a "small number of clusters" problem and want to reduce your daily ☕ consumption, you should consider using [fwildclusterboot](https://github.com/s3alfisc/fwildclusterboot), Stata's [boottest](https://github.com/droodman/boottest), or [WildBootTests.jl](https://github.com/droodman/WildBootTests.jl), which is a novel Julia implementation of the "fast algorithm". If all of this seems like black magic to you and you want to learn more about the "fast algorithm", I cannot recommend the "Fast & Wild" paper highly enough.
+
+## Literature
+
++ "Fast & Wild", Roodman et al. (2019), The Stata Journal
++ "Bootstrap-Based Improvements for Inference with Clustered Errors", Cameron, Gelbach & Miller (2008), The Review of Economics and Statistics
++ "Cluster-robust inference: A guide to empirical practice" (2020), MacKinnon, Oerregaard Nielsen & Webb, Working Paper
++ "Mostly Harmless Econometrics", Angrist & Pischke (2009), Princeton University Press

@@ -1,0 +1,17 @@
+---
+title: "Hosting a blogdown blog on github pages"
+author: "Alex Fischer"
+date: "2022-01-24"
+categories: [blogdown, "github pages", R]
+---
+
+I have recently moved from building this blog via the [distill](https://github.com/rstudio/distill) package to [blogdown](https://github.com/rstudio/blogdown). The main reason for this is that at the time of writing, distill does not support [full RSS feeds for multiple articles](https://github.com/rstudio/distill/issues/33), which is a requirement for linking my blog to [R-bloggers](r-bloggers.com). Deploying the `distill` based blog via github pages was quite straightforward, but doing so for the `blogdown` based blog proved to be slightly more cumbersome.
+
+While there are many good blog posts on deploying blogdown-blogs on github pages (e.g. [here](https://www.r-bloggers.com/2019/09/start-blogging-in-5-minutes-on-netlify-with-hugo-and-blogdown-september-2019-update/) or [here](https://www.caitlincasar.com/post/blogdown/)), I appear not to be the only one who ran into problems, as this [stackoverflow thread](https://stackoverflow.com/questions/45362628/github-pages-site-not-detecting-index-html) with 100+ upvotes shows.
+
+In my case, I needed to do two things for successful deployment on github pages:
+
+1) Add a `.nojekyll` file to the main directory of the blog, e.g. by running `file.create(".nojekyll")` in the r console
+2) Add a `publishDir: docs` statement below `baseurl` in the `config.yaml` file. Rebuilding via `blogdown::build_site()` then creates a docs folder and populates it with html. On github pages, I then needed to make sure that the blog is build based on this docs folder (see the image below). After that, I simply had to commit, push, and github actions would finally deploy the blog without any error messages!
+
+![Build the github pages site from the 'docs' folder](github_pages.PNG){fig-align="center" width="75%"}

@@ -1,0 +1,15 @@
+---
+title: "Software"
+---
+
+Most of my OSS efforts center around [py-econometrics](https://github.com/py-econometrics/), where we build software for applied econometrics in Python.
+
+-   [`pyfixest`](https://github.com/py-econometrics/pyfixest) implements fast routines for fixed effects regression (OLS, IV, Poisson) and a wide range of inference procedures (iid, HC1-3, CRV1, CRV3, randomization inference, multiple testing corrections via Bonferroni & Romano-Wolf) following the syntax of the formidable `fixest` R package. When we started in 2022, our goal was to finish the package before the LLMs fully take over writing code. Now that LLMs write most of my code, and I am still working on `PyFixest`, I am not sure if we succeeded - but we have gotten quite far =) 
+- [`maketables`](https://github.com/py-econometrics/maketables) produces publication-ready regression tables for models from `pyfixest`, `statsmodels`, and `linearmodels` in HTML (via great-tables), LaTeX and Word.
+- [`within`](https://github.com/py-econometrics/within) provides high-performance solvers for projecting out high-dimensional fixed effects from regression problems. It includes a Rust core and Python bindings, and exploits the graph structure of fixed-effects systems. It is very fast =)
+- [`duckreg`](https://github.com/py-econometrics/duckreg) provides a simple interface to run lossless regressions on very large datasets that do not fit in memory by first reducing the data to a set of summary statistics out-of-memory using DuckDB and then running weighted least squares with frequency weights.
+
+I got hooked on working on open source during my PhD, when I was writing my code in R (a language that I still love) and needed a fast routine for wild cluster bootstrapping.
+
+-   [`fwildclusterboot`](https://github.com/s3alfisc/fwildclusterboot) and [`wildboottest`](https://github.com/s3alfisc/wildboottest) implement the fast **wild cluster bootstrap** algorithm as suggested in [Roodman, MacKinnon, Nielsen & Webb](https://journals.sagepub.com/doi/abs/10.1177/1536867X19830877) and [MacKinnon, Nielsen & Webb (2022)](https://www.econ.queensu.ca/sites/econ.queensu.ca/files/wpaper/qed_wp_1485.pdf) in **R** and **Python**.
+-   [`wildrwolf`](https://github.com/s3alfisc/wildrwolf) and [`wildwyoung`](https://github.com/s3alfisc/wildwyoung) implement the multiple-hypothesis corrections by Romano & Wolf (2005) and Westfall and Young (1993) for regression objects from the `fixest` package (**R**). Because both packages are built around `fwildclusterboot` and the wild (cluster) bootstrap, both are usually quite fast.
