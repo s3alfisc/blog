@@ -3,7 +3,9 @@
     "listing": "/index.html",
     "items": [
       "/posts/pyfixest-at-instacart/index.html",
+      "/posts/fast-romano-wolf-multiple-testing/index.html",
       "/posts/fast-wild-cluster-bootstrap-python/index.html",
+      "/posts/even-faster-wild-cluster-bootstrap-jl/index.html",
       "/posts/cluster-robust-inference-horse-race/index.html",
       "/posts/hosting-blogdown-on-github-pages/index.html",
       "/posts/testing-r-against-julia-github-actions/index.html",

@@ -1,5 +1,5 @@
 ---
-title: "Instacart is running Regressions with PyFixest!"
+title: "Instacart is running fixed effect regressions with PyFixest!"
 author: "Alex Fischer"
 date: "2026-07-11"
 categories: [Python, pyfixest, econometrics, Instacart, marketplace experiments]

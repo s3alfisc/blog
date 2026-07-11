@@ -12,7 +12,7 @@
 <generator>quarto-1.9.38</generator>
 <lastBuildDate>Fri, 10 Jul 2026 22:00:00 GMT</lastBuildDate>
 <item>
-  <title>Instacart is running Regressions with PyFixest!</title>
+  <title>Instacart is running fixed effect regressions with PyFixest!</title>
   <dc:creator>Alex Fischer</dc:creator>
   <link>https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/</link>
   <description><![CDATA[ 
@@ -41,6 +41,19 @@
   <guid>https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/</guid>
   <pubDate>Fri, 10 Jul 2026 22:00:00 GMT</pubDate>
   <media:content url="https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/instacart-logo.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title></title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/fast-romano-wolf-multiple-testing/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>R</category>
+  <category>econometrics</category>
+  <category>wild cluster bootstrap</category>
+  <category>statistical inference</category>
+  <category>multiple testing</category>
+  <guid>https://s3alfisc.github.io/blog/posts/fast-romano-wolf-multiple-testing/</guid>
+  <pubDate>Tue, 24 Jan 2023 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍</title>
@@ -278,6 +291,19 @@ font-style: inherit;"># 0    X1  [-1.0394791020434824]  0.294286</span></span></
   <category>statistical inference</category>
   <guid>https://s3alfisc.github.io/blog/posts/fast-wild-cluster-bootstrap-python/</guid>
   <pubDate>Sat, 05 Nov 2022 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title></title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/even-faster-wild-cluster-bootstrap-jl/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>R</category>
+  <category>Julia</category>
+  <category>wild cluster bootstrap</category>
+  <category>statistical inference</category>
+  <category>fwildclusterboot</category>
+  <guid>https://s3alfisc.github.io/blog/posts/even-faster-wild-cluster-bootstrap-jl/</guid>
+  <pubDate>Sun, 17 Apr 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>A 🐴 race: The Wild Cluster Bootstrap vs Satterthwaite-corrected Sandwich Estimators when the number of Clusters is small</title>
