@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rapp.history
+_site/
+.pixi/
+
+/.quarto/
+**/*.quarto_ipynb

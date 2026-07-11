@@ -1,0 +1,214 @@
+---
+title: "Even faster Wild Cluster Bootstrap Inference in R via WildBootTests.jl 🚀"
+author: "Alex Fischer"
+date: "2022-04-18"
+draft: true
+categories: [R, Julia, "wild cluster bootstrap", "statistical inference", fwildclusterboot]
+---
+
+Lately, I have spent quite a bit of time working with a `Julia` package - [WildBootTests.jl](https://github.com/droodman/WildBootTests.jl) - and towards integrating it into `fwildclusterboot` via the awesome [JuliaConnectoR](https://github.com/stefan-m-lenz/JuliaConnectoR). Now that `fwildclusterboot` 0.8 has made its way to [CRAN](https://cran.rstudio.com/web/packages/fwildclusterboot/index.html), I thought it would be time to convince you to install Julia and to run your wild bootstraps through `WildBootTests.jl` - but of course, still from R. 😊
+
+## 'WildBootTests.jl'
+
+A few months ago, I wrote a blog post on the outstanding speed gains that can be achieved by the 'fast' wild cluster bootstrap algorithm, which is implemented in R in the `fwildclusterboot` package. In some benchmarks, `fwildclusterboot's` `boottest()` function ran the wild cluster bootstrap [more than 1000 times faster](../1000x-faster-wild-cluster-bootstrap/) than `sandwich::vcovBS`! Amazingly, it turns out that `WildBootTests.jl` is **even faster** than the algorithm in `fwildclusterboot` or Stata's `boottest` module.
+
+But we have all heard that `Julia` is fast, so it's maybe no too surprising that `WildBootTests.jl` shines with speed. In my opinion, there are at least three other reason why it's worth to try out `WildBootTests.jl`:
+
++ `WildBootTests.jl` is very memory efficient
++ `WildBootTests.jl` implements the wild cluster bootstrap for IV regression by [Davidson & MacKinnon](https://www.tandfonline.com/doi/abs/10.1198/jbes.2009.07221), and it's blazing fast.
++ `WildBootTests.jl` allows for wild cluster bootstrapped F-tests[^1]
+
+[^1]: Wild cluster bootstrapped F-tests are implemented in R via the [wildmeta package](https://github.com/meghapsimatrix/wildmeta).
+
+Before I'll start showcasing `WildBootTests.jl`, I will quickly describe how to access `WildBootTests.jl` from R via `fwildclusterboot`.
+
+### Getting Started
+
+To run `WildBootTests.jl` through `fwildclusterboot`, both `Julia` and `WildBootTests.jl` need to be installed. The best place to install `Julia` is its [homepage](https://julialang.org/) - just follow the instructions you find there.
+
+Alternatively, you can use the `install_julia()` function from the `JuliaCall` package to install Julia from 'within' R:
+
+```{r, eval = FALSE}
+install.packages("JuliaCall")
+JuliaCall::install_julia()
+```
+
+To facilitate getting started with everything else - e.g. connecting R and Julia - I have written a small package, `JuliaConnectoR.utils`.
+
+So after installing `Julia`, simply run[^2]
+
+[^2]: Of course you also have to install `fwildclusterboot`, which you can install from CRAN, github, and r-universe.
+
+```{r, eval = FALSE}
+devtools::install_github("s3alfisc/JuliaConnectoR.utils")
+library(JuliaConnectoR.utils)
+# connect julia and R
+connect_julia_r()
+# install WildBootTests.jl
+install_julia_packages("WildBootTests.jl")
+```
+
+and you're good to go and can wild cluster bootstrap via `WildBootTests.jl`.
+
+### A first bootstrap via `WildBootTests.jl`
+
+The only required things left are a) a regression model to bootstrap and b) to specify `boottest()'s` `engine` function argument, so let's start with simulating some data and fitting a regression:
+
+```{r, warning = FALSE, message = FALSE}
+library(fwildclusterboot)
+library(modelsummary)
+N <- 100000
+data <- fwildclusterboot:::create_data(
+  N = N,
+  N_G1 = 50, icc1 = 0.1,
+  N_G2 = 20, icc2 = 0.8,
+  numb_fe1 = 10,
+  numb_fe2 = 10,
+  seed = 123,
+  weights = 1:N
+)
+lm_fit <- lm(
+  proposition_vote ~ treatment + as.factor(Q1_immigration) + as.factor(Q2_defense),
+  data
+)
+```
+
+By default, `boottest()` will run `fwildclusterboot's` R-implementation of the wild cluster bootstrap. To run the bootstrap through `WildBootTests.jl`, you have to specify the `engine` function argument:
+
+```{r, warning = FALSE, message=FALSE}
+boot_r <-
+  fwildclusterboot::boottest(
+    lm_fit,
+    clustid = c("group_id1"),
+    B = 9999,
+    param = "treatment",
+    seed = 3,
+    nthreads = 1
+  )
+
+boot_julia <-
+  fwildclusterboot::boottest(
+    lm_fit,
+    clustid = c("group_id1"),
+    B = 9999,
+    param = "treatment",
+    seed = 3,
+    nthreads = 1,
+    engine = "WildBootTests.jl"
+  )
+```
+
+Note that the first call of `WildBootTests.jl` takes around 10-20 seconds to, which is due to the fact that the Julia code being run is initially pre(-JIT)-compiled.
+
+Of course, it is good to see that the R implementation of the fast wild cluster bootstrap and `WildBootTests.jl` lead to (almost) identical inferences:
+
+```{r, warning = FALSE, error = FALSE}
+msummary(
+  list(
+    "R" = boot_r,
+    "Julia" = boot_julia
+  ),
+  estimate = "{estimate} ({p.value})",
+  statistic = "[{conf.low}, {conf.high}]"
+)
+```
+
+Now that I have shown how it works, let's proceed to the next question: why should you install `Julia` and run `WildBootTests.jl` if the 'fast' algorithm is already implemented in 'native' R?
+
+### Reason I: It is extremely fast
+
+In short: `fwildclusterboot's` R algo is fast, but we all know that `Julia` is faster, and `WildBootTests.jl` turns the speed of the wild cluster bootstrap from 10 to 11.
+
+In a blog post from a few months ago, I claimed that [`fwildclusterboot` was 1000 times faster than `sandwich's` `vcovBS()` function](../1000x-faster-wild-cluster-bootstrap/). Below, I run the same problem, once for `engine = "R"` and once with `engine = "WildBootTests.jl"`:
+
+```{r, warning = FALSE, message = FALSE}
+B <- 9999
+bench <- bench::mark(
+    boot_r =
+    fwildclusterboot::boottest(
+      lm_fit,
+      clustid = c("group_id1"),
+      B = B,
+      param = "treatment",
+      seed = 3,
+      nthreads = 1
+    ),
+    boot_julia =
+    fwildclusterboot::boottest(
+      lm_fit,
+      clustid = c("group_id1"),
+      B = B,
+      param = "treatment",
+      seed = 3,
+      nthreads = 1,
+      engine = "WildBootTests.jl"
+    ),
+  iterations = 3,
+  check = FALSE
+)
+bench
+```
+
+For a problem that took `boottest()'s` R algorithm around 1.5 seconds, `WildBootTests.jl` finishes in around half a second. `WildBootTests.jl` is around 3 times faster than `fwildclusterboot's` R implementation. Benchmarked against `sandwich::vcovBS`, `WildBootTests.jl` is around 4500x faster!
+
+In general, `WildBootTests.jl` is - after compilation - at least an **order of a magnitude** faster than `fwildclusterboot's` 'R' algorithm. Below are benchmarks from a regression with $N=10000$ observations and $k=20$ covariates.
+
+While the R algorithm is competitive for 'small' problems, with a growing number of clusters and observations problems, `WildBootTests.jl` clearly outperforms. For the most complex problem with $G = 1000$ clusters and $B = 99999$ iterations, `WildBootTests.jl` finishes in around 8 seconds, while the "R-algo" on 4 cores needs around twice as long. On one core, it runs for more than 40 seconds. And note that `WildBootTests.jl` can also be run in parallel - check out `JuliaConnectoR.utils::set_julia_nthreads()` for instructions on how to set the number of threads for `Julia` from within R.
+
+### `WildBootTests.jl` is very memory-efficient
+
+A second selling point of `WildBootTests.jl` is that it is less memory-demanding. As `fwildclusterboot's` R algorithm is fully vectorized, a large bootstrap weights matrix $v^{*}$ of dimensions $G \times B$ is created and stored at once. As programming in Julia is much more encouraging towards writing loops, the large matrix does not need to be created at once, which prohibits the occasional out-of-memory error that the R algorithm encounters when $G$ and $B$ get too large.
+
+### `WildBootTests.jl` implements the Wild Bootstrap for IV and tests of multiple joint hypotheses
+
+Third (and maybe most importantly), `WildBootTests.jl` offers additional functionality that has previously not been available to R users - most notably, it implements the WRE bootstrap for instrumental variable estimation from [Davidson & MacKinnon](https://www.tandfonline.com/doi/abs/10.1198/jbes.2009.07221). David Roodman, who is `WildBootTests.jl's` author, has spend a lot of effort on [optimizing the WRE's performance](https://github.com/droodman/WildBootTests.jl/blob/master/in-case-i-get-hit-by-a-bus/Faster%20IV%203.docx), and as a result, it is blazing fast.
+
+```{r, warning = FALSE, error = FALSE}
+nlsw88 <- haven::read_dta("http://www.stata-press.com/data/r8/nlsw88.dta")
+head(nlsw88)
+```
+
+Currently, `fwildclusterboot` allows to run the `WRE` after IV-estimation via `ivreg::ivreg()`[^3]
+
+[^3]: I plan to add support for IV estimation via `fixest` and `lfe` in the next weeks / months.
+
+```{r, warning = FALSE, error = FALSE}
+library(ivreg)
+# test that coefficient on tenure = 0, clustering errors by industry
+iv_fit <- ivreg(wage ~ tenure + ttl_exp + collgrad | union + ttl_exp + collgrad, data = nlsw88)
+boot_iv <-
+boottest(
+  iv_fit,
+  param = "tenure",
+  B = 9999,
+  clustid = "industry"
+)
+summary(iv_fit)
+summary(boot_iv)
+```
+
+Additionally, `WildBootTests.jl` supports wild cluster bootstrapping of multiple joint hypotheses. E.g. to jointly test the null that `tenure = 0` and `collgrad = 0` after a linear regression model, one would use `fwildclusterboot's` new `mboottest()` function:
+
+```{r, warning=FALSE, message = FALSE}
+lm_fit <- lm(wage ~ tenure + ttl_exp + collgrad, data = nlsw88)
+boot_q2 <-
+mboottest(
+  lm_fit,
+  R = clubSandwich::constrain_zero(2:4, coef(lm_fit)),
+  B = 9999,
+  clustid = "industry"
+)
+summary(boot_q2)
+```
+
+### Conclusion
+
+`WildBootTests.jl` is outstanding software - do check it out!
+
+P.S. If you want all you wild bootstraps to run through `WildBootTests.jl`, you can simply set a global variable at the top of your script:
+
+```{r, eval = FALSE, message = FALSE, warning = FALSE}
+setBoottest_engine("WildBootTests.jl")
+```
+
+Afterwards, each call to `boottest()` will simply default to `engine = "WildBootTests.jl"` unless explicitly stated otherwise.

@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "posts/**/*.qmd"
+
+website:
+  title: "Alex Fischer"
+  site-url: https://s3alfisc.github.io/blog/
+  description: "Alex Fischer's blog on econometrics and statistical inference in R and Python."
+  navbar:
+    title: false
+    left:
+      - text: Alex Fischer
+        href: about.qmd
+      - text: Blog
+        href: index.qmd
+      - text: Software
+        href: software.qmd
+    right:
+      - icon: github
+        href: https://github.com/s3alfisc
+      - icon: rss
+        href: index.xml
+  page-footer:
+    center: "© 2026 Alex Fischer"
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true

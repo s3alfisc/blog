@@ -1,0 +1,13 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/pyfixest-at-instacart/index.html",
+      "/posts/fast-wild-cluster-bootstrap-python/index.html",
+      "/posts/cluster-robust-inference-horse-race/index.html",
+      "/posts/hosting-blogdown-on-github-pages/index.html",
+      "/posts/testing-r-against-julia-github-actions/index.html",
+      "/posts/1000x-faster-wild-cluster-bootstrap/index.html"
+    ]
+  }
+]

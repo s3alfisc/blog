@@ -1,0 +1,16 @@
+---
+title: "Instacart is running Regressions with PyFixest!"
+author: "Alex Fischer"
+date: "2026-07-11"
+categories: [Python, pyfixest, econometrics, Instacart, marketplace experiments]
+
+image: instacart-logo.png
+---
+
+![Instacart logo](instacart-logo.png){fig-align="center" width="30%"}
+
+[Ben Knight](https://www.linkedin.com/in/benjamin-knight/) from Instacart has published a great write-up on how they use `pyfixest` "in production" for measuring the effects of marketplace experiments. 
+
+For an open source developer, there is of course nothing more rewarding than seeing your software solving a problem in the real world. If you are using PyFixest in your work, please don't hesitate to send me a note - I am sure it will make my day. =)  
+
+You can check out Ben's article here: [Leveraging pyfixest for High-Cardinality Marketplace Modeling at Instacart](https://tech.instacart.com/leveraging-pyfixest-for-high-cardinality-marketplace-modeling-at-instacart-3913df91a04b)

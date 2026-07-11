@@ -1,195 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://s3alfisc.github.io/blog/categories/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/software.html</loc>
+    <lastmod>2026-07-11T15:18:10.863Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/tags/econometrics/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/index.html</loc>
+    <lastmod>2026-07-11T15:26:07.747Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/categories/econometrics/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/fast-wild-cluster-bootstrap-python/index.html</loc>
+    <lastmod>2026-07-11T15:07:05.253Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/post/2023-01-25-fast-romano-wolf-multiple-testing-corrections-for-fixest/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/1000x-faster-wild-cluster-bootstrap/index.html</loc>
+    <lastmod>2026-07-11T15:07:02.871Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/tags/multiple-testing/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/about.html</loc>
+    <lastmod>2026-07-11T15:07:40.912Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/categories/multiple-testing/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/index.html</loc>
+    <lastmod>2026-07-11T14:58:38.932Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/post/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/cluster-robust-inference-horse-race/index.html</loc>
+    <lastmod>2026-07-11T15:07:04.298Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/tags/r/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/hosting-blogdown-on-github-pages/index.html</loc>
+    <lastmod>2026-07-11T15:07:03.833Z</lastmod>
   </url>
-  
   <url>
-    <loc>https://s3alfisc.github.io/blog/categories/r/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <loc>https://s3alfisc.github.io/blog/posts/testing-r-against-julia-github-actions/index.html</loc>
+    <lastmod>2026-07-11T15:07:03.369Z</lastmod>
   </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/statistical-inference/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/statistical-inference/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/wild-cluster-bootstrap/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/wild-cluster-bootstrap/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/</loc>
-    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/another-tag/</loc>
-    <lastmod>2022-12-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/2022-12-11-even-faster-wild-cluster-bootstrap-inference-in-r-via-wildboottests-jl/</loc>
-    <lastmod>2022-12-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/one-tag/</loc>
-    <lastmod>2022-12-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/2022-12-11-fast-wild-cluster-bootstrap-inference-in-python-with-wildboottest/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/python/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/python/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/2022-01-29-cluster-robust-inference-when-the-number-of-clusters-is-small-a-horse-race/</loc>
-    <lastmod>2022-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/clustered-errors/</loc>
-    <lastmod>2022-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/satterthwaite-correction/</loc>
-    <lastmod>2022-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/blogdown/</loc>
-    <lastmod>2022-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/blogdown/</loc>
-    <lastmod>2022-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/github-pages/</loc>
-    <lastmod>2022-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/github-pages/</loc>
-    <lastmod>2022-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/2022-01-24-hosting-a-blogdown-blog-on-github-pages/</loc>
-    <lastmod>2022-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/ci/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/ci/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/github-actions/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/github-actions/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/tags/julia/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/categories/julia/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/testing-an-r-package-against-a-julia-package-via-github-actions/</loc>
-    <lastmod>2021-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/post/1000x-faster-wild-cluster-bootstrap-inference-in-r-with-fwildclusterboot/</loc>
-    <lastmod>2021-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://s3alfisc.github.io/blog/about/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url>
-  
 </urlset>

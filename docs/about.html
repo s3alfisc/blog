@@ -33,13 +33,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -72,70 +69,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Alex Fischer" href="index.xml" data-external="1"></head>
+</head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -148,11 +87,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">Alex Fischer</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
@@ -182,265 +121,44 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YmxvZ2Rvd24=">blogdown <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q0k=">CI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2x1c3RlcmVkJTIwZXJyb3Jz">clustered errors <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWNvbm9tZXRyaWNz">econometrics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Z2l0aHViJTIwYWN0aW9ucw==">github actions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2l0aHViJTIwcGFnZXM=">github pages <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW5zdGFjYXJ0">Instacart <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFya2V0cGxhY2UlMjBleHBlcmltZW50cw==">marketplace experiments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHlmaXhlc3Q=">pyfixest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="U2F0dGVydGh3YWl0ZSUyMGNvcnJlY3Rpb24=">Satterthwaite correction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U=">statistical inference <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA=">wild cluster bootstrap <span class="quarto-category-count">(3)</span></div></div></div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
+<div class="quarto-about-trestles">
+  <div class="about-entity">
+    <img src="images/profile.jpg" class="about-image
+  rounded " style="width: 20em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Alex Fischer</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
   </div>
-  
-
-
 </header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UHl0aG9uJTJDcHlmaXhlc3QlMkNlY29ub21ldHJpY3MlMkNJbnN0YWNhcnQlMkNtYXJrZXRwbGFjZSUyMGV4cGVyaW1lbnRz" data-listing-date-sort="1783720800000" data-listing-file-modified-sort="1783783567747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="90">
-<div class="thumbnail"><a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/pyfixest-at-instacart/instacart-logo.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/pyfixest-at-instacart/index.html" class="no-external">Instacart is running Regressions with PyFixest!</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHlmaXhlc3Q='); return false;">pyfixest</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW5zdGFjYXJ0'); return false;">Instacart</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWFya2V0cGxhY2UlMjBleHBlcmltZW50cw=='); return false;">marketplace experiments</div>
-
+    <div class="about-links">
+  <a href="https://github.com/s3alfisc" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">GitHub</span>
+  </a>
+  <a href="https://www.linkedin.com/in/alexander-fischer-25653219b/" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text">LinkedIn</span>
+  </a>
+  <a href="https://s3alfisc.r-universe.dev/ui#builds" class="about-link" rel="" target="">
+    <i class="bi bi-link-45deg"></i>
+     <span class="about-link-text">r-universe</span>
+  </a>
 </div>
-<div class="delink listing-description"><a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-Ben Knight from Instacart has published a great write-up on how they use <code>pyfixest</code> “in production” for measuring the effects of marketplace experiments.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-<div class="listing-date">
-Jul 11, 2026
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UHl0aG9uJTJDZWNvbm9tZXRyaWNzJTJDd2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXAlMkNzdGF0aXN0aWNhbCUyMGluZmVyZW5jZQ==" data-listing-date-sort="1667689200000" data-listing-file-modified-sort="1783782425253" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="651">
-<div class="thumbnail"><a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
+  </div>
+  <div class="about-contents"><main class="content" id="quarto-document-content">
+<p>Hi all, I’m Alex!</p>
+<p>I am a data scientist at <a href="http://trivago.com/">trivago</a>, where I work on online auctions. In my free time, I work on <a href="./software.html">open source software</a> for econometrics and statistical inference in <strong>Python</strong> and <strong>R</strong>.</p>
 
-<p class="card-img-top"><img loading='lazy' src="posts/fast-wild-cluster-bootstrap-python/MNW2022.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
+</main></div>
 </div>
-<div class="delink listing-description"><a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
-Aleksandr Michuda and I have just released version 0.1 of <code>wildboottest</code> to PyPi.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
-<div class="listing-date">
-Nov 6, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="c3RhdGlzdGljYWwlMjBpbmZlcmVuY2UlMkN3aWxkJTIwY2x1c3RlciUyMGJvb3RzdHJhcCUyQ2NsdXN0ZXJlZCUyMGVycm9ycyUyQ1NhdHRlcnRod2FpdGUlMjBjb3JyZWN0aW9u" data-listing-date-sort="1643410800000" data-listing-file-modified-sort="1783782424298" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1449">
-<div class="thumbnail"><a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/cluster-robust-inference-horse-race/Le_jockey.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">A 🐴 race: The Wild Cluster Bootstrap vs Satterthwaite-corrected Sandwich Estimators when the number of Clusters is small</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y2x1c3RlcmVkJTIwZXJyb3Jz'); return false;">clustered errors</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2F0dGVydGh3YWl0ZSUyMGNvcnJlY3Rpb24='); return false;">Satterthwaite correction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-A couple of months ago, Gordon Burtch shared an excellent Twitter thread on the merits of wild cluster bootstrap inference when the regression error terms are clustered into…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-<div class="listing-date">
-Jan 29, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="YmxvZ2Rvd24lMkNnaXRodWIlMjBwYWdlcyUyQ1I=" data-listing-date-sort="1642978800000" data-listing-file-modified-sort="1783782423833" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="216">
-<div class="thumbnail"><a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/hosting-blogdown-on-github-pages/github_pages.PNG"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">Hosting a blogdown blog on github pages</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YmxvZ2Rvd24='); return false;">blogdown</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0aHViJTIwcGFnZXM='); return false;">github pages</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-I have recently moved from building this blog via the distill package to blogdown. The main reason for this is that at the time of writing, distill does not support full RSS…<code></code><code></code>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-<div class="listing-date">
-Jan 24, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ0p1bGlhJTJDQ0klMkNnaXRodWIlMjBhY3Rpb25z" data-listing-date-sort="1639782000000" data-listing-file-modified-sort="1783782423369" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1679">
-<div class="thumbnail"><a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/testing-r-against-julia-github-actions/Caravaggio_Sacrifice_of_Isaac.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">Testing an R package against a Julia package on github actions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q0k='); return false;">CI</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0aHViJTIwYWN0aW9ucw=='); return false;">github actions</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-Something I have learned the hard way: every single line of code that I write should be accompanied by a unit test. Unit tests are not only useful for me as a developer to…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-<div class="listing-date">
-Dec 18, 2021
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ2Vjb25vbWV0cmljcyUyQ3dpbGQlMjBjbHVzdGVyJTIwYm9vdHN0cmFwJTJDc3RhdGlzdGljYWwlMjBpbmZlcmVuY2U=" data-listing-date-sort="1639263600000" data-listing-file-modified-sort="1783782422871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2643">
-<div class="thumbnail"><a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/1000x-faster-wild-cluster-bootstrap/duerer_lion.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">1000x faster Wild Cluster Bootstrap Inference in R with fwildclusterboot 🚀</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-When you suspect that the error terms in your regression model are correlated within clusters, and the number of clusters is small, trouble might be running at you. In such…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-<div class="listing-date">
-Dec 12, 2021
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     

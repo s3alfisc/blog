@@ -1,0 +1,21 @@
+---
+title: "Alex Fischer"
+image: images/profile.jpg
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/s3alfisc
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/alexander-fischer-25653219b/
+    - icon: link-45deg
+      text: r-universe
+      href: https://s3alfisc.r-universe.dev/ui#builds
+---
+
+Hi all, I'm Alex!
+
+I am a data scientist at [trivago](http://trivago.com/), where I work on online auctions.
+In my free time, I work on [open source software](software.qmd) for econometrics and statistical inference in **Python** and **R**.

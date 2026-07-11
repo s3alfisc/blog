@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Alex Fischer">
+<meta name="dcterms.date" content="2022-11-06">
 
-<title>Alex Fischer</title>
+<title>Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍 – Alex Fischer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,28 +25,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-529c26969d27a2a2473a4b9f3bafd9fb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-529c26969d27a2a2473a4b9f3bafd9fb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,68 +107,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Alex Fischer" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -148,15 +125,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Alex Fischer</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html"> 
+    <a class="nav-link" href="../../software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
 </ul>
@@ -167,7 +144,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./index.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -183,21 +160,45 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YmxvZ2Rvd24=">blogdown <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q0k=">CI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2x1c3RlcmVkJTIwZXJyb3Jz">clustered errors <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWNvbm9tZXRyaWNz">econometrics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Z2l0aHViJTIwYWN0aW9ucw==">github actions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2l0aHViJTIwcGFnZXM=">github pages <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW5zdGFjYXJ0">Instacart <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFya2V0cGxhY2UlMjBleHBlcmltZW50cw==">marketplace experiments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHlmaXhlc3Q=">pyfixest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="U2F0dGVydGh3YWl0ZSUyMGNvcnJlY3Rpb24=">Satterthwaite correction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U=">statistical inference <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA=">wild cluster bootstrap <span class="quarto-category-count">(3)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Alex Fischer</h1>
-</div>
+<h1 class="title">Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">econometrics</div>
+    <div class="quarto-category">wild cluster bootstrap</div>
+    <div class="quarto-category">statistical inference</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alex Fischer </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 6, 2022</p>
+    </div>
+  </div>
   
     
   </div>
@@ -207,231 +208,79 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UHl0aG9uJTJDcHlmaXhlc3QlMkNlY29ub21ldHJpY3MlMkNJbnN0YWNhcnQlMkNtYXJrZXRwbGFjZSUyMGV4cGVyaW1lbnRz" data-listing-date-sort="1783720800000" data-listing-file-modified-sort="1783783567747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="90">
-<div class="thumbnail"><a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/pyfixest-at-instacart/instacart-logo.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/pyfixest-at-instacart/index.html" class="no-external">Instacart is running Regressions with PyFixest!</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHlmaXhlc3Q='); return false;">pyfixest</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW5zdGFjYXJ0'); return false;">Instacart</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWFya2V0cGxhY2UlMjBleHBlcmltZW50cw=='); return false;">marketplace experiments</div>
-
+<p><a href="https://amichuda.github.io/">Aleksandr Michuda</a> and I have just released version 0.1 of <a href="https://github.com/s3alfisc/wildboottest"><code>wildboottest</code></a> to <a href="https://pypi.org/project/wildboottest/">PyPi</a>.</p>
+<p><code>wildboottest</code> is a Python package to conduct <em>fast</em> wild cluster bootstrap inference in Python and implements the wild cluster bootstrap following algorithms sketched out in <a href="https://www.sciencedirect.com/science/article/abs/pii/S2452306221001404">MacKinnon (2021)</a> and <a href="https://www.econ.queensu.ca/sites/econ.queensu.ca/files/wpaper/qed_wp_1485.pdf">MacKinnon, Nielsen &amp; Webb, 2022 (MNW)</a>.</p>
+<p>Most importantly, it supports all eight variants of the wild cluster bootstrap discussed in MNW as well as CRV3 inference via the cluster jackknife. Some of these new variants appear to perform even better than the “standard” (WCR11) wild cluster bootstrap in situations where the textbook CRV1 cluster robust variance estimator is known to struggle. And thanks to the excellent <a href="https://github.com/numba/numba"><code>numba</code></a> library, it is actually quite fast!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MNW2022.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Rejection Frequencies of different Wild Cluster Bootstrap Variants (Figure from MNW (2022, full citation below). The main takeaway is that the new bootstrap variants appear to perform really, really well!</figcaption>
+</figure>
 </div>
-<div class="delink listing-description"><a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-Ben Knight from Instacart has published a great write-up on how they use <code>pyfixest</code> “in production” for measuring the effects of marketplace experiments.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/pyfixest-at-instacart/index.html" class="no-external">
-<div class="listing-date">
-Jul 11, 2026
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UHl0aG9uJTJDZWNvbm9tZXRyaWNzJTJDd2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXAlMkNzdGF0aXN0aWNhbCUyMGluZmVyZW5jZQ==" data-listing-date-sort="1667689200000" data-listing-file-modified-sort="1783782425253" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="651">
-<div class="thumbnail"><a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
+<p>In terms of functionality, <code>wildboottest</code> still lacks behind its sister packages (Stata’s <a href="https://github.com/droodman/boottest">boottest</a>, R’s <a href="https://github.com/s3alfisc/fwildclusterboot">fwildcusterboot</a> and Julia’s <a href="https://github.com/droodman/WildBootTests.jl">WildBootTests.jl</a>). <code>wildboottest</code> supports</p>
+<ul>
+<li>The wild cluster bootstrap for OLS (<a href="https://direct.mit.edu/rest/article-abstract/90/3/414/57731/Bootstrap-Based-Improvements-for-Inference-with">Cameron, Gelbach &amp; Miller 2008</a>, <a href="https://econpapers.repec.org/paper/qedwpaper/1406.htm">Roodman et al (2019)</a>).</li>
+<li>Multiple new versions of the wild cluster bootstrap as described in <a href="https://www.econ.queensu.ca/sites/econ.queensu.ca/files/wpaper/qed_wp_1485.pdf">MacKinnon, Nielsen &amp; Webb (2022)</a>, including the WCR13, WCR31, WCR33, WCU13, WCU31 and WCU33.</li>
+<li>CRV1 and CRV3 robust variance estimation, including the CRV3-Jackknife as described in <a href="https://arxiv.org/pdf/2205.03288.pdf">MacKinnon, Nielsen &amp; Webb (2022)</a>.</li>
+</ul>
+<p>Features that are currently not (yet) supported:</p>
+<ul>
+<li>The (non-clustered) wild bootstrap for OLS (<a href="https://projecteuclid.org/journals/annals-of-statistics/volume-14/issue-4/Jackknife-Bootstrap-and-Other-Resampling-Methods-in-Regression-Analysis/10.1214/aos/1176350142.full">Wu, 1986</a>).</li>
+<li>The subcluster bootstrap (<a href="https://academic.oup.com/ectj/article-abstract/21/2/114/5078969?login=false">MacKinnon and Webb 2018</a>).</li>
+<li>Confidence intervals formed by inverting the test and iteratively searching for bounds.</li>
+<li>Multiway clustering.</li>
+<li>Regression Weights (Weighted Least Squares / WLS).</li>
+</ul>
+<p>You can install the package from PyPi by running</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install wildboottest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here’s a small example on how to use <code>wildboottest</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wildboottest.wildboottest <span class="im">import</span> wildboottest</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create data</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">12312312</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N <span class="op">*</span> k).reshape((N,k))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.DataFrame(X)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>X.rename(columns <span class="op">=</span> {<span class="dv">0</span>:<span class="st">"X1"</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,k)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>beta[<span class="dv">0</span>] <span class="op">=</span> <span class="fl">0.005</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,N)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> X <span class="op">@</span> beta <span class="op">+</span> u</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> np.random.choice(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>,G)), N)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(Y, X)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>wildboottest(model, param <span class="op">=</span> <span class="st">"X1"</span>, cluster <span class="op">=</span> cluster, B <span class="op">=</span> <span class="dv">9999</span>, bootstrap_type <span class="op">=</span> <span class="st">"11"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   param              statistic   p-value</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 0    X1  [-1.0530803154504016]  0.308831</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>wildboottest(model, param <span class="op">=</span> <span class="st">"X1"</span>, cluster <span class="op">=</span> cluster, B <span class="op">=</span> <span class="dv">9999</span>, bootstrap_type <span class="op">=</span> <span class="st">"31"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   param              statistic   p-value</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 0    X1  [-1.0530803154504016]  0.307631</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>wildboottest(model, param <span class="op">=</span> <span class="st">"X1"</span>, cluster <span class="op">=</span> cluster, B <span class="op">=</span> <span class="dv">9999</span>, bootstrap_type <span class="op">=</span> <span class="st">"33"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">#   param              statistic   p-value</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 0    X1  [-1.0394791020434824]  0.294286</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This was the first time I have worked on a Python package, and it has been quite a nice experience - after having used quite a bit of Python at work, I have now actually started to enjoy Python and object oriented programming! The wild cluster bootstrap variants really fit nicely into an OOP framework, and I am really impressed by the <code>numba</code> jit compiler. Submitting to PyPi was a surprisingly smooth experience as well 😄.</p>
+<p>What are the next steps for <code>wildboottest</code>? We need to close a few performance bottlenecks, in particular for the WCRx3 bootstrap types, and then I’d like to close the functionality gaps discussed above. I’d also like to allow users to call <code>WildBootTests.jl</code>, which is just blazing fast. And optimally, we’ll make the package callable from <code>statsmodels</code> and <code>linearmodels</code>.</p>
+<p>And no, despite having a lot of fun working on <code>wildboottest</code> and some recent troubles of getting <code>fwildclusterboot</code> back to CRAN, I don’t plan to stop developing in R 😄</p>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>MacKinnon - Fast cluster bootstrap methods for linear regression models, 2021, <a href="https://www.sciencedirect.com/science/article/abs/pii/S2452306221001404">Econometrics &amp; Statistics</a></li>
+<li>MacKinnon, Nielsen &amp; Webb - Fast and Reliable Jackknife and Bootstrap Methods for Cluster-Robust Inference, 2022, <a href="https://www.econ.queensu.ca/sites/econ.queensu.ca/files/wpaper/qed_wp_1485.pdf">Queens University Working Paper No 1485</a></li>
+</ul>
 
-<p class="card-img-top"><img loading='lazy' src="posts/fast-wild-cluster-bootstrap-python/MNW2022.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍</a>
-</h3>
-<div class="listing-categories">
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
-Aleksandr Michuda and I have just released version 0.1 of <code>wildboottest</code> to PyPi.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/fast-wild-cluster-bootstrap-python/index.html" class="no-external">
-<div class="listing-date">
-Nov 6, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="c3RhdGlzdGljYWwlMjBpbmZlcmVuY2UlMkN3aWxkJTIwY2x1c3RlciUyMGJvb3RzdHJhcCUyQ2NsdXN0ZXJlZCUyMGVycm9ycyUyQ1NhdHRlcnRod2FpdGUlMjBjb3JyZWN0aW9u" data-listing-date-sort="1643410800000" data-listing-file-modified-sort="1783782424298" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1449">
-<div class="thumbnail"><a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/cluster-robust-inference-horse-race/Le_jockey.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">A 🐴 race: The Wild Cluster Bootstrap vs Satterthwaite-corrected Sandwich Estimators when the number of Clusters is small</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y2x1c3RlcmVkJTIwZXJyb3Jz'); return false;">clustered errors</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2F0dGVydGh3YWl0ZSUyMGNvcnJlY3Rpb24='); return false;">Satterthwaite correction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-A couple of months ago, Gordon Burtch shared an excellent Twitter thread on the merits of wild cluster bootstrap inference when the regression error terms are clustered into…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/cluster-robust-inference-horse-race/index.html" class="no-external">
-<div class="listing-date">
-Jan 29, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="YmxvZ2Rvd24lMkNnaXRodWIlMjBwYWdlcyUyQ1I=" data-listing-date-sort="1642978800000" data-listing-file-modified-sort="1783782423833" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="216">
-<div class="thumbnail"><a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/hosting-blogdown-on-github-pages/github_pages.PNG"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">Hosting a blogdown blog on github pages</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YmxvZ2Rvd24='); return false;">blogdown</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0aHViJTIwcGFnZXM='); return false;">github pages</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-I have recently moved from building this blog via the distill package to blogdown. The main reason for this is that at the time of writing, distill does not support full RSS…<code></code><code></code>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/hosting-blogdown-on-github-pages/index.html" class="no-external">
-<div class="listing-date">
-Jan 24, 2022
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ0p1bGlhJTJDQ0klMkNnaXRodWIlMjBhY3Rpb25z" data-listing-date-sort="1639782000000" data-listing-file-modified-sort="1783782423369" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1679">
-<div class="thumbnail"><a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/testing-r-against-julia-github-actions/Caravaggio_Sacrifice_of_Isaac.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">Testing an R package against a Julia package on github actions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q0k='); return false;">CI</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0aHViJTIwYWN0aW9ucw=='); return false;">github actions</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-Something I have learned the hard way: every single line of code that I write should be accompanied by a unit test. Unit tests are not only useful for me as a developer to…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/testing-r-against-julia-github-actions/index.html" class="no-external">
-<div class="listing-date">
-Dec 18, 2021
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ2Vjb25vbWV0cmljcyUyQ3dpbGQlMjBjbHVzdGVyJTIwYm9vdHN0cmFwJTJDc3RhdGlzdGljYWwlMjBpbmZlcmVuY2U=" data-listing-date-sort="1639263600000" data-listing-file-modified-sort="1783782422871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2643">
-<div class="thumbnail"><a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/1000x-faster-wild-cluster-bootstrap/duerer_lion.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">1000x faster Wild Cluster Bootstrap Inference in R with fwildclusterboot 🚀</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvbm9tZXRyaWNz'); return false;">econometrics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2lsZCUyMGNsdXN0ZXIlMjBib290c3RyYXA='); return false;">wild cluster bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljYWwlMjBpbmZlcmVuY2U='); return false;">statistical inference</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-When you suspect that the error terms in your regression model are correlated within clusters, and the number of clusters is small, trouble might be running at you. In such…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/1000x-faster-wild-cluster-bootstrap/index.html" class="no-external">
-<div class="listing-date">
-Dec 12, 2021
-</div>
-<div class="listing-author">
-Alex Fischer
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
