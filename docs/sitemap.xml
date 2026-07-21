@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://s3alfisc.github.io/blog/software.html</loc>
-    <lastmod>2026-07-11T15:18:10.863Z</lastmod>
+    <lastmod>2026-07-11T15:37:20.307Z</lastmod>
   </url>
   <url>
     <loc>https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/index.html</loc>
-    <lastmod>2026-07-11T15:34:35.751Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s3alfisc.github.io/blog/posts/fast-wild-cluster-bootstrap-python/index.html</loc>
-    <lastmod>2026-07-11T15:07:05.253Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s3alfisc.github.io/blog/posts/1000x-faster-wild-cluster-bootstrap/index.html</loc>
-    <lastmod>2026-07-11T15:07:02.871Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s3alfisc.github.io/blog/about.html</loc>
-    <lastmod>2026-07-11T15:07:40.912Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s3alfisc.github.io/blog/index.html</loc>
-    <lastmod>2026-07-11T14:58:38.932Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s3alfisc.github.io/blog/posts/cluster-robust-inference-horse-race/index.html</loc>
-    <lastmod>2026-07-11T15:07:04.298Z</lastmod>
+    <lastmod>2026-07-11T15:37:20.307Z</lastmod>
   </url>
   <url>
     <loc>https://s3alfisc.github.io/blog/posts/hosting-blogdown-on-github-pages/index.html</loc>
-    <lastmod>2026-07-11T15:07:03.833Z</lastmod>
+    <lastmod>2026-07-21T20:57:58.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/posts/cluster-robust-inference-horse-race/index.html</loc>
+    <lastmod>2026-07-21T20:57:58.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/index.html</loc>
+    <lastmod>2026-07-11T15:37:20.302Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/about.html</loc>
+    <lastmod>2026-07-11T15:37:20.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/posts/1000x-faster-wild-cluster-bootstrap/index.html</loc>
+    <lastmod>2026-07-21T20:57:58.127Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/posts/fast-wild-cluster-bootstrap-python/index.html</loc>
+    <lastmod>2026-07-21T20:57:58.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s3alfisc.github.io/blog/posts/pyfixest-0.70.0-savi/index.html</loc>
+    <lastmod>2026-07-21T21:08:04.654Z</lastmod>
   </url>
   <url>
     <loc>https://s3alfisc.github.io/blog/posts/testing-r-against-julia-github-actions/index.html</loc>
-    <lastmod>2026-07-11T15:07:03.369Z</lastmod>
+    <lastmod>2026-07-21T20:57:58.129Z</lastmod>
   </url>
 </urlset>

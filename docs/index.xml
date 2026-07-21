@@ -10,7 +10,78 @@
 <atom:link href="https://s3alfisc.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Alex Fischer&#39;s blog on econometrics and statistical inference in R and Python.</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Fri, 10 Jul 2026 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 20 Jul 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>PyFixest 0.70.0: Safe Anytime-Valid Inference (SAVI)</title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/pyfixest-0.70.0-savi/</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/pyfixest-0.70.0-savi/anytime.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Share of SAVI experiments with a valid positive decision by each day, for true lifts of 1, 2, and 4 percentage points. The fixed-test curve reports power for a true 2 percentage point lift at its prespecified decision time, day twenty.</figcaption>
+</figure>
+</div>
+<p>PyFixest 0.70.0 will be out soon, and the headline feature is <strong>safe anytime-valid inference (SAVI)</strong> for linear regression, following <a href="https://doi.org/10.1080/01621459.2026.2692052">Lindon et al.&nbsp;(2026)</a>.</p>
+<section id="what-savi-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-savi-does">What SAVI does</h2>
+<p>Standard p-values and confidence intervals are calibrated for a single, pre-specified analysis. If you peek at an A/B test dashboard daily and stop the first time p &lt; 0.05, the false-positive rate can be far above 5%. SAVI fixes this: it replaces the fixed-time p-value with a <strong>sequential p-value</strong> and the fixed-time confidence interval with a <strong>confidence sequence</strong>. Under the method’s assumptions, a 5% SAVI test has an asymptotic 5% bound on the probability of a threshold crossing at any review, and its confidence sequence contains the true effect at every review simultaneously with asymptotic probability of at least 95%. The review schedule does not need to be chosen before launch.</p>
+<p>SAVI comes with three equivalent decision rules:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Rule 1: stop when the sequential p-value ≤ 0.05</span></span>
+<span id="cb1-2">fit.pvalue_savi(mixture_precision<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>mp)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Rule 2: stop when the e-value ≥ 20 (= 1/0.05)</span></span>
+<span id="cb1-5">fit.evalue(mixture_precision<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>mp)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Rule 3: stop when zero falls outside the confidence sequence</span></span>
+<span id="cb1-8">fit.confint(inference_type<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"savi"</span>, mixture_precision<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>mp)</span></code></pre></div></div>
+<p>An associated vignette - <strong><a href="https://pyfixest.org/how-to/anytime-valid-inference.html">When to Use Anytime-Valid Inference</a></strong> — walks through five practical scenarios where SAVI matters: daily A/B test monitoring, effect-size-dependent stopping, making sure that a backend migration does not break anything, long-term holdouts, and canary releases.</p>
+</section>
+<section id="what-else-is-new" class="level2">
+<h2 class="anchored" data-anchor-id="what-else-is-new">What else is new</h2>
+<ul>
+<li><code>confint()</code>, <code>tidy()</code>, and <code>summary()</code> gain an <code>inference_type</code> argument. <code>confint()</code> accepts <code>"regular"</code>, <code>"simult"</code>, or <code>"savi"</code>; <code>tidy()</code> and <code>summary()</code> currently accept only <code>"regular"</code>.</li>
+<li><code>feglm()</code> now supports <code>weights</code>, <code>weights_type</code>, and <code>offset</code>, and <code>family="poisson"</code>.</li>
+<li><code>pf.fepois</code> gets step-halving, inner-tolerance tightening, and ppmlhdfe-style warm-start acceleration.</li>
+<li>Removed deprecated <code>fixef_tol</code>, <code>fixef_maxiter</code>, <code>demeaner_backend</code> arguments, JAX backend, and <code>FeolsCompressed</code>.</li>
+<li>Fixed a bug where <code>confint()</code> could mislabel coefficients when <code>keep</code> or <code>drop</code> reordered them.</li>
+</ul>
+<p>Once 0.70.0 is published, install it with:</p>
+<pre><code>pip install pyfixest --upgrade</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <category>pyfixest</category>
+  <category>econometrics</category>
+  <category>SAVI</category>
+  <category>anytime-valid inference</category>
+  <guid>https://s3alfisc.github.io/blog/posts/pyfixest-0.70.0-savi/</guid>
+  <pubDate>Mon, 20 Jul 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://s3alfisc.github.io/blog/posts/pyfixest-0.70.0-savi/anytime.png" medium="image" type="image/png" height="99" width="144"/>
+</item>
 <item>
   <title>Instacart is running fixed effect regressions with PyFixest!</title>
   <dc:creator>Alex Fischer</dc:creator>
