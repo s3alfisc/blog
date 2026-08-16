@@ -22,4 +22,4 @@ I usually start working on OSS after work around 21:00, and suddenly it's 23:30 
 
 Long story short, I think a more optimal strategy for me going forward is to reduce the number of subscriptions (fewer token limits to hit) and topics I work on in parallel and, to some degree, stop over-relying on an auto-mode-and-review workflow and switch back to a more "socratic" style of coding with LLMs.
 
-[^dopa]: Thanks to Kyle W for pointing out to me that, in truth, when writing about Token-Maxxing, I had in fact been writing about "Dopa-Maxxing".
+[^dopa]: Thanks to Kyle W. for pointing out to me that, in truth, when writing about Token-Maxxing, I had in fact been writing about "Dopa-Maxxing".
