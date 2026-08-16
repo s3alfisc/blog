@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/token-maxxing/index.html",
+      "/posts/anytime-valid-inference-vignette/index.html",
       "/posts/pyfixest-at-instacart/index.html",
       "/posts/fast-romano-wolf-multiple-testing/index.html",
       "/posts/fast-wild-cluster-bootstrap-python/index.html",

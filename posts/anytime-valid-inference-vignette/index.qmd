@@ -1,0 +1,11 @@
+---
+title: "New vignette: When to Use Anytime-Valid Inference"
+author: "Alex Fischer"
+date: "2026-08-09"
+categories: [Python, pyfixest, econometrics, SAVI, anytime-valid inference]
+image: savi.png
+---
+
+Thanks to help by Michael, the next PyFixest release will ship support for safe anytime-valid inference (SAVI). A new vignette walks through when and why to use it in randomized experiments. If you (or someone in your team) have ever been tempted to ship after an interim p-value crossed the mythical 5% threshold, this might be for you =) You can find the vignette **[here](https://pyfixest.org/how-to/anytime-valid-inference.html)**.
+
+![SAVI stopping time by true lift](savi.png)

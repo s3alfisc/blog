@@ -10,7 +10,77 @@
 <atom:link href="https://s3alfisc.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Alex Fischer&#39;s blog on econometrics and statistical inference in R and Python.</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Fri, 10 Jul 2026 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 15 Aug 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Token Maxxing</title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/token-maxxing/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Usually I don’t watch much youtube (a social phenomenon I have somewhat missed out on), but here’s a <a href="https://www.youtube.com/watch?v=iPUn1Fnfn0k">decent video</a> about another social phenomenon I have somewhat experienced myself .</p>
+<p>With LLM coding, I feel like I can do anything and start working on too many things simultaneously / in multiple parallel sessions (pyfixest features and <a href="https://github.com/py-econometrics/pyfixest/pull/1379">refactoring</a>, <a href="https://github.com/py-econometrics/within-paper">new algo paper</a>, <a href="https://github.com/py-econometrics/within/pull/84">R support for new algo</a>, <a href="https://www.meetup.com/de-de/pydata-berlin/events/316084301/?eventOrigin=group_upcoming_events">presentations</a> on this and that, blog posts, a <a href="https://github.com/py-econometrics/pyfixest/pull/1447">JOSS paper draft</a>, etc etc).</p>
+<p>I am paying for subscriptions with Codex, Claude, and OpenCode, and when I don’t spend all of my usage, I feel like I missed an opportunity, so sometimes I skip going to the gym to keep on working because I still have usage to spend or usage will reset in 30 minutes so I can keep on working… This was particularly bad the weekend that Fable was temporarily available on the 20$ plan - I almost couldn’t leave my keyboard, the desire to keep on prompting was too strong. Needless to say that - because I prompted without much thinking - the results I got were not very good.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/token-maxxing/claude_maxxing.png" class="img-fluid figure-img"></p>
+<figcaption>Claude</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/token-maxxing/codex_maxxing.png" class="img-fluid figure-img"></p>
+<figcaption>Codex</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>I usually start working on OSS after work around 21:00, and suddenly it’s 23:30 and I want to stop, but there is one last prompt to write and finally I stop and it is 00:30 but I feel no accomplishment because I haven’t been doing any deep work … but at least, I used all of my usage (#tokenmaxxing)!</p>
+<p>Long story short, I think a more optimal strategy for me going forward is to reduce the number of subscriptions (fewer token limits to hit) and topics I work on in parallel and, to some degree, stop over-relying on auto-mode and switch back to a more “socratic” style of coding with LLMs.</p>
+
+
+
+ ]]></description>
+  <guid>https://s3alfisc.github.io/blog/posts/token-maxxing/</guid>
+  <pubDate>Sat, 15 Aug 2026 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>New vignette: When to Use Anytime-Valid Inference</title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/anytime-valid-inference-vignette/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Thanks to help by Michael, the next PyFixest release will ship support for safe anytime-valid inference (SAVI). A new vignette walks through when and why to use it in randomized experiments. If you (or someone in your team) have ever been tempted to ship after an interim p-value crossed the mythical 5% threshold, this might be for you =) You can find the vignette <strong><a href="https://pyfixest.org/how-to/anytime-valid-inference.html">here</a></strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/anytime-valid-inference-vignette/savi.png" class="img-fluid figure-img"></p>
+<figcaption>SAVI stopping time by true lift</figcaption>
+</figure>
+</div>
+
+
+
+ ]]></description>
+  <category>Python</category>
+  <category>pyfixest</category>
+  <category>econometrics</category>
+  <category>SAVI</category>
+  <category>anytime-valid inference</category>
+  <guid>https://s3alfisc.github.io/blog/posts/anytime-valid-inference-vignette/</guid>
+  <pubDate>Sat, 08 Aug 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://s3alfisc.github.io/blog/posts/anytime-valid-inference-vignette/savi.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
 <item>
   <title>Instacart is running fixed effect regressions with PyFixest!</title>
   <dc:creator>Alex Fischer</dc:creator>
