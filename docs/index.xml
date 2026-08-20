@@ -10,7 +10,45 @@
 <atom:link href="https://s3alfisc.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Alex Fischer&#39;s blog on econometrics and statistical inference in R and Python.</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Sat, 15 Aug 2026 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 17 Aug 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>PyData Berlin Talk on our new within Fixed Effect Solver</title>
+  <dc:creator>Alex Fischer</dc:creator>
+  <link>https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Yesterday I was in Berlin for the day and presented at the local PyData Meetup on our new solver for fixed effects regression. It was of course a lot of fun! The development was prompted by an issue we received via github a couple of months ago:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/how-it-started.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+<p>Hours vs minutes! Urgh. Luckily, we’ve made some progress in between, so the issue could be closed with with</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/converges.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+<p>If you are curious how the new solver works, you can find the slides for the talk <a href="pydata-berlin-within.pdf">here</a>, and please make sure to take a look at the <a href="https://github.com/py-econometrics/within/tree/maincode">code</a> or to even run a regression with it! We also have a longer <a href="https://github.com/py-econometrics/within-paper">write up</a> up in preparation, but as unfortunately is too often the case, the Pareto principle bites and we’ve been refining the last 20% for quite a while now.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/benchmarks-torch-cuda.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Benchmarks with Torch CUDA</figcaption>
+</figure>
+</div>
+
+
+
+ ]]></description>
+  <category>Python</category>
+  <category>econometrics</category>
+  <category>PyFixest</category>
+  <guid>https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/</guid>
+  <pubDate>Mon, 17 Aug 2026 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Token-Maxxing / Dopa-Maxxing</title>
   <dc:creator>Alex Fischer</dc:creator>
@@ -43,7 +81,7 @@
 <p>Usually I don’t watch much youtube (a social phenomenon I have somewhat missed out on), but here’s an <a href="https://www.youtube.com/watch?v=iPUn1Fnfn0k">interesting video</a> about another social phenomenon I have somewhat experienced myself .</p>
 <p>With LLM coding, I feel like I can do anything and start working on too many things simultaneously / in multiple parallel sessions (pyfixest features and <a href="https://github.com/py-econometrics/pyfixest/pull/1379">refactoring</a>, <a href="https://github.com/py-econometrics/within-paper">a paper on our new demeaning algo</a>, <a href="https://github.com/py-econometrics/within/pull/84">R bindings for the new algo</a>, <a href="https://www.meetup.com/de-de/pydata-berlin/events/316084301/?eventOrigin=group_upcoming_events">presentations</a> on this and that, blog posts, a <a href="https://github.com/py-econometrics/pyfixest/pull/1447">JOSS paper draft</a>, etc etc).</p>
 <p>I am paying for subscriptions with Codex, Claude, and OpenCode, and when I don’t spend all of my usage, I feel like I missed an opportunity, so sometimes I skip going to the gym to keep on working because I still have usage to spend or usage will reset in 30 minutes so I can keep on <del>working</del> prompting my agents to keep on working… This was particularly bad the weekend that Fable was temporarily available on the 20$ plan - I almost couldn’t leave my keyboard, the desire to keep on prompting was too strong. Needless to say that - because I prompted without much thinking - the results I got were not very good.</p>
-<p>I usually start working on OSS after work around 21:00, and suddenly it’s 23:30 and I want to stop, but there is one last prompt to write and finally I stop and it is 00:30 but I feel no accomplishment because I haven’t been doing any deep work … but at least, I used all of my usage (#tokenmaxxing)!<sup>1</sup> Prior to agentic coding, I’d occasionally also work late, but eventually, I’d be too tired to continue. Nowadays, I just continue, on and on, hoping that GTP and Claude will cover / win the lottery for me if I just <a href="https://www.anthropic.com/research/riemann-zeta">keep on encouraging</a> them enough.</p>
+<p>I usually start working on OSS after work around 21:00, and suddenly it’s 23:30 and I want to stop, but there is one last prompt to write and finally I stop and it is 00:30 but I feel no accomplishment because I haven’t been doing any deep work … but at least, I used all of my usage (#tokenmaxxing = #dopamaxxing)!<sup>1</sup> Prior to agentic coding, I’d occasionally also work late, but eventually, I’d be too tired to continue coding. Nowadays, I just continue, on and on, hoping that GTP and Claude will cover / win the lottery for me if I just <a href="https://www.anthropic.com/research/riemann-zeta">keep on encouraging</a> them enough.</p>
 <p>Long story short, I think a more optimal strategy for me going forward is to reduce the number of subscriptions (fewer token limits to hit) and topics I work on in parallel and, to some degree, stop over-relying on an auto-mode-and-review workflow and switch back to a more “socratic” style of coding with LLMs.</p>
 
 
@@ -117,19 +155,6 @@
   <guid>https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/</guid>
   <pubDate>Fri, 10 Jul 2026 22:00:00 GMT</pubDate>
   <media:content url="https://s3alfisc.github.io/blog/posts/pyfixest-at-instacart/instacart-logo.png" medium="image" type="image/png" height="144" width="144"/>
-</item>
-<item>
-  <title></title>
-  <dc:creator>Alex Fischer</dc:creator>
-  <link>https://s3alfisc.github.io/blog/posts/fast-romano-wolf-multiple-testing/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>R</category>
-  <category>econometrics</category>
-  <category>wild cluster bootstrap</category>
-  <category>statistical inference</category>
-  <category>multiple testing</category>
-  <guid>https://s3alfisc.github.io/blog/posts/fast-romano-wolf-multiple-testing/</guid>
-  <pubDate>Tue, 24 Jan 2023 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Fast Wild Cluster Bootstrapping in Python via wildboottest 🐍</title>
@@ -367,19 +392,6 @@ font-style: inherit;"># 0    X1  [-1.0394791020434824]  0.294286</span></span></
   <category>statistical inference</category>
   <guid>https://s3alfisc.github.io/blog/posts/fast-wild-cluster-bootstrap-python/</guid>
   <pubDate>Sat, 05 Nov 2022 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title></title>
-  <dc:creator>Alex Fischer</dc:creator>
-  <link>https://s3alfisc.github.io/blog/posts/even-faster-wild-cluster-bootstrap-jl/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>R</category>
-  <category>Julia</category>
-  <category>wild cluster bootstrap</category>
-  <category>statistical inference</category>
-  <category>fwildclusterboot</category>
-  <guid>https://s3alfisc.github.io/blog/posts/even-faster-wild-cluster-bootstrap-jl/</guid>
-  <pubDate>Sun, 17 Apr 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>A 🐴 race: The Wild Cluster Bootstrap vs Satterthwaite-corrected Sandwich Estimators when the number of Clusters is small</title>

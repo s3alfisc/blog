@@ -1,0 +1,26 @@
+---
+title: "PyData Berlin Talk on our new `within` Fixed Effect Solver"
+author: "Alex Fischer"
+date: "2026-08-18"
+categories: [Python, econometrics, PyFixest]
+---
+
+Yesterday I was in Berlin for the day and presented at the local PyData Meetup on our new solver 
+for fixed effects regression. It was of course a lot of fun! The development was prompted by 
+an issue we received via github a couple of months ago: 
+
+![](how-it-started.png){fig-align="center" width="85%"}
+
+Hours vs minutes! Urgh. Luckily, we've made some progress in between, so the issue could be closed 
+with with 
+
+![](converges.png){fig-align="center" width="85%"}
+
+If you are curious how the new solver works, you can find the slides for the talk [here](pydata-berlin-within.pdf), and please make sure to 
+take a look at the [code](https://github.com/py-econometrics/within/tree/maincode) or to even run a regression 
+with it! We also have a 
+longer [write up](https://github.com/py-econometrics/within-paper) up in preparation, but as unfortunately
+is too often the case, the Pareto principle bites and we've been refining the last 20% 
+for quite a while now. 
+
+![Benchmarks with Torch CUDA](benchmarks-torch-cuda.png){fig-align="center" width="85%"}
