@@ -14,7 +14,7 @@
 <item>
   <title>PyData Berlin Talk on our new within Fixed Effect Solver</title>
   <dc:creator>Alex Fischer</dc:creator>
-  <link>https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/</link>
+  <link>https://s3alfisc.github.io/blog/posts/pydata-berlin-within/</link>
   <description><![CDATA[ 
 
 
@@ -23,19 +23,19 @@
 <p>Yesterday I was in Berlin for the day and presented at the local PyData Meetup on our new solver for fixed effects regression. It was of course a lot of fun! The development was prompted by an issue we received via github a couple of months ago:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/how-it-started.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+<p><img src="https://s3alfisc.github.io/blog/posts/pydata-berlin-within/how-it-started.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
 </figure>
 </div>
 <p>Hours vs minutes! Urgh. Luckily, we’ve made some progress in between, so the issue could be closed with with</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/converges.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+<p><img src="https://s3alfisc.github.io/blog/posts/pydata-berlin-within/converges.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
 </figure>
 </div>
-<p>If you are curious how the new solver works, you can find the slides for the talk <a href="pydata-berlin-within.pdf">here</a>, and please make sure to take a look at the <a href="https://github.com/py-econometrics/within/tree/maincode">code</a> or to even run a regression with it! We also have a longer <a href="https://github.com/py-econometrics/within-paper">write up</a> up in preparation, but as unfortunately is too often the case, the Pareto principle bites and we’ve been refining the last 20% for quite a while now.</p>
+<p>If you are curious how the new solver works, you can find the slides for the talk <a href="pydata-berlin-within.pdf">here</a>, and please make sure to take a look at the <a href="https://github.com/py-econometrics/within/">code</a> or to even run a regression with it! We also have a longer <a href="https://github.com/py-econometrics/within-paper">write up</a> up in preparation, but as unfortunately is too often the case, the Pareto principle bites and we’ve been refining the last 20% for quite a while now.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/benchmarks-torch-cuda.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<p><img src="https://s3alfisc.github.io/blog/posts/pydata-berlin-within/benchmarks-torch-cuda.png" class="img-fluid figure-img" style="width:85.0%"></p>
 <figcaption>Benchmarks with Torch CUDA</figcaption>
 </figure>
 </div>
@@ -46,7 +46,7 @@
   <category>Python</category>
   <category>econometrics</category>
   <category>PyFixest</category>
-  <guid>https://s3alfisc.github.io/blog/posts/linear-algebra-faster-than-rust-cuda/</guid>
+  <guid>https://s3alfisc.github.io/blog/posts/pydata-berlin-within/</guid>
   <pubDate>Mon, 17 Aug 2026 22:00:00 GMT</pubDate>
 </item>
 <item>

@@ -145,5 +145,12 @@
     "title": "Token-Maxxing / Dopa-Maxxing",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThanks to Kyle W. for pointing out to me that, in truth, when writing about Token-Maxxing, I had in fact been writing about “Dopa-Maxxing”.↩︎"
+  },
+  {
+    "objectID": "posts/pydata-berlin-within/index.html",
+    "href": "posts/pydata-berlin-within/index.html",
+    "title": "PyData Berlin Talk on our new within Fixed Effect Solver",
+    "section": "",
+    "text": "Yesterday I was in Berlin for the day and presented at the local PyData Meetup on our new solver for fixed effects regression. It was of course a lot of fun! The development was prompted by an issue we received via github a couple of months ago:\n\n\n\n\n\nHours vs minutes! Urgh. Luckily, we’ve made some progress in between, so the issue could be closed with with\n\n\n\n\n\nIf you are curious how the new solver works, you can find the slides for the talk here, and please make sure to take a look at the code or to even run a regression with it! We also have a longer write up up in preparation, but as unfortunately is too often the case, the Pareto principle bites and we’ve been refining the last 20% for quite a while now.\n\n\n\nBenchmarks with Torch CUDA"
   }
 ]
